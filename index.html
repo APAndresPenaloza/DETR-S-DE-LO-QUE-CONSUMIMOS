@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feria de Concientización Hídrica - El Rastro Invisible del Agua</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f0f9ff;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .infographic-step {
+            transition: all 0.3s ease;
+        }
+        .infographic-step:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen">
+
+    <!-- Header / Banner Infográfico -->
+    <header class="bg-gradient-to-r from-blue-700 via-cyan-600 to-teal-500 text-white py-12 px-6 shadow-xl relative overflow-hidden">
+        <div class="max-w-6xl mx-auto relative z-10 text-center">
+            <span class="bg-white/20 text-xs md:text-sm font-semibold uppercase tracking-widest py-1 px-4 rounded-full border border-white/30 inline-block mb-3">
+                Feria de Concientización Hídrica Escolar
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+                Detrás de lo que consumimos
+            </h1>
+            <p class="text-xl md:text-2xl font-light max-w-3xl mx-auto text-blue-50">
+                El rastro invisible del agua y nuestra huella en el planeta
+            </p>
+        </div>
+        <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-cyan-400/20 rounded-full blur-3xl"></div>
+        <div class="absolute -top-10 -left-10 w-64 h-64 bg-blue-900/20 rounded-full blur-3xl"></div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="max-w-6xl mx-auto px-4 mt-6">
+        <div class="flex flex-wrap justify-center gap-2 bg-white/70 p-2 rounded-2xl shadow-sm border border-slate-200/80 backdrop-blur-md">
+            <button onclick="switchTab('infografia')" id="tab-infografia" class="tab-btn active px-5 py-2.5 rounded-xl font-bold text-sm transition-all bg-blue-600 text-white shadow-md">
+                <i data-lucide="layout-dashboard" class="inline w-4 h-4 mr-2"></i>Infografía Interactiva
+            </button>
+            <button onclick="switchTab('calculadora')" id="tab-calculadora" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all text-slate-600 hover:bg-slate-100">
+                <i data-lucide="calculator" class="inline w-4 h-4 mr-2"></i>Calculadora de Huella Hídrica
+            </button>
+            <button onclick="switchTab('repositorio')" id="tab-repositorio" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all text-slate-600 hover:bg-slate-100">
+                <i data-lucide="folder-git-2" class="inline w-4 h-4 mr-2"></i>Repositorio Digital
+            </button>
+            <button onclick="switchTab('folleto')" id="tab-folleto" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all text-slate-600 hover:bg-slate-100">
+                <i data-lucide="file-text" class="inline w-4 h-4 mr-2"></i>Folleto Comunitario
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+
+        <!-- TAB 1: INFOGRAFÍA INTERACTIVA -->
+        <section id="sec-infografia" class="tab-content block space-y-8">
+            
+            <!-- Resumen Visual del Concepto -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-3xl border-t-4 border-emerald-500 shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-emerald-100 text-emerald-600 rounded-2xl">
+                            <i data-lucide="sprout" class="w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800">Huella Verde</h3>
+                            <span class="text-xs text-slate-500">Agua de Lluvia</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Agua de precipitación almacenada en el suelo como humedad. Es consumida por la vegetación, cultivos agrícolas y bosques sin convertirse en escorrentía.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl border-t-4 border-blue-500 shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-blue-100 text-blue-600 rounded-2xl">
+                            <i data-lucide="droplet" class="w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800">Huella Azul</h3>
+                            <span class="text-xs text-slate-500">Agua Superficial/Subterránea</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Volumen de agua dulce extraído de ríos, lagos o acuíferos para riego agrícola, uso industrial, minería o consumo directo en hogares.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl border-t-4 border-slate-500 shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-slate-100 text-slate-600 rounded-2xl">
+                            <i data-lucide="wind" class="w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800">Huella Gris</h3>
+                            <span class="text-xs text-slate-500">Agua para Dilución</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Volumen de agua dulce necesario para diluir la carga de contaminantes vertidos en los procesos productivos hasta cumplir los estándares de calidad.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Datos Impactantes del Agua Virtual -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+                <h2 class="text-2xl font-extrabold text-slate-800 mb-6 flex items-center">
+                    <i data-lucide="eye" class="text-blue-600 mr-3"></i> El Rastro Invisible de Productos Cotidianos
+                </h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-blue-50/50 transition-all">
+                        <div class="text-3xl mb-2">☕</div>
+                        <div class="text-2xl font-black text-blue-600">140 L</div>
+                        <div class="text-xs font-semibold text-slate-500 mt-1">1 Taza de Café</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-blue-50/50 transition-all">
+                        <div class="text-3xl mb-2">🍔</div>
+                        <div class="text-2xl font-black text-blue-600">2.400 L</div>
+                        <div class="text-xs font-semibold text-slate-500 mt-1">1 Hamburguesa</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-blue-50/50 transition-all">
+                        <div class="text-3xl mb-2">👕</div>
+                        <div class="text-2xl font-black text-blue-600">2.495 L</div>
+                        <div class="text-xs font-semibold text-slate-500 mt-1">1 Camiseta Algodón</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-blue-50/50 transition-all">
+                        <div class="text-3xl mb-2">👖</div>
+                        <div class="text-2xl font-black text-blue-600">8.000 L</div>
+                        <div class="text-xs font-semibold text-slate-500 mt-1">1 Jeans</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-blue-50/50 transition-all">
+                        <div class="text-3xl mb-2">📱</div>
+                        <div class="text-2xl font-black text-blue-600">12.000 L</div>
+                        <div class="text-xs font-semibold text-slate-500 mt-1">1 Smartphone</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-blue-50/50 transition-all">
+                        <div class="text-3xl mb-2">🍫</div>
+                        <div class="text-2xl font-black text-blue-600">1.700 L</div>
+                        <div class="text-xs font-semibold text-slate-500 mt-1">100g Chocolate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: CALCULADORA CASERA -->
+        <section id="sec-calculadora" class="tab-content hidden space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Formularios -->
+                <div class="lg:col-span-7 bg-white p-8 rounded-3xl shadow-xl border border-slate-100 space-y-6">
+                    <div class="border-b pb-4">
+                        <h2 class="text-2xl font-extrabold text-slate-800 flex items-center">
+                            <i data-lucide="calculator" class="text-cyan-600 mr-3"></i> Calculadora de Huella Hídrica
+                        </h2>
+                        <p class="text-sm text-slate-500 mt-1">Ingresa tus consumos diarios promedio para calcular tu impacto semanal.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Duchas diarias (minutos promedio)</label>
+                            <input type="number" id="input-ducha" value="10" min="0" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+                            <span class="text-xs text-slate-400">Gasto: ~12 Litros por minuto</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Tazas de café consumidas al día</label>
+                            <input type="number" id="input-cafe" value="2" min="0" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+                            <span class="text-xs text-slate-400">Agua virtual: ~140 Litros por taza</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Porciones de carne de res a la semana</label>
+                            <input type="number" id="input-carne" value="4" min="0" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+                            <span class="text-xs text-slate-400">Agua virtual: ~2.400 Litros por porción</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Prendas de ropa nueva compradas al mes</label>
+                            <input type="number" id="input-ropa" value="1" min="0" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-cyan-500 focus:outline-none">
+                            <span class="text-xs text-slate-400">Agua virtual promedio: ~3.000 Litros por prenda</span>
+                        </div>
+
+                        <button onclick="calcularHuella()" class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold py-3 rounded-xl shadow-lg hover:opacity-95 transition-all mt-4">
+                            Calcular Mi Huella Semanal
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resultados y Gráficos -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+                    <div class="bg-gradient-to-br from-blue-900 to-slate-900 text-white p-8 rounded-3xl shadow-xl">
+                        <h3 class="text-sm font-semibold uppercase tracking-wider text-cyan-400">Tu Consumo Estimado</h3>
+                        <div class="mt-4 flex items-baseline">
+                            <span id="resultado-litros" class="text-5xl font-black text-white">0</span>
+                            <span class="ml-2 text-xl text-cyan-200">Litros / semana</span>
+                        </div>
+                        <p id="resultado-equivalencia" class="text-xs text-slate-300 mt-4 border-t border-slate-800 pt-4">
+                            Haz clic en calcular para ver el análisis de tu huella.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex-1">
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4 text-center">Desglose del Impacto Hídrico</h4>
+                        <div class="relative h-48">
+                            <canvas id="chartHuella"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: REPOSITORIO DIGITAL -->
+        <section id="sec-repositorio" class="tab-content hidden space-y-6">
+            <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-slate-800 flex items-center">
+                            <i data-lucide="folder-git-2" class="text-teal-600 mr-3"></i> Repositorio de Proyectos Estudiantiles
+                        </h2>
+                        <p class="text-sm text-slate-500">Recursos y evidencias del ABP "Detrás de lo que consumimos"</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <span class="bg-teal-50 text-teal-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-teal-200">6 Equipos Participantes</span>
+                        <span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-blue-200">2026 Edición</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="border border-slate-200 rounded-2xl p-5 hover:border-teal-500 transition-all bg-slate-50/50">
+                        <span class="text-xs font-bold text-teal-600 bg-teal-100 px-2.5 py-0.5 rounded-md">Infografía</span>
+                        <h3 class="font-bold text-slate-800 mt-3 mb-1">El Impacto de la Moda Rápida</h3>
+                        <p class="text-xs text-slate-500 mb-4">Análisis de la huella hídrica gris en la industria textil del jeans.</p>
+                        <div class="flex justify-between items-center text-xs text-slate-400">
+                            <span>Equipo 1 - 10°A</span>
+                            <span class="font-semibold text-teal-600 hover:underline cursor-pointer">Ver Recurso PDF →</span>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl p-5 hover:border-teal-500 transition-all bg-slate-50/50">
+                        <span class="text-xs font-bold text-blue-600 bg-blue-100 px-2.5 py-0.5 rounded-md">Matriz Estadística</span>
+                        <h3 class="font-bold text-slate-800 mt-3 mb-1">Agua Virtual en la Dieta Escolar</h3>
+                        <p class="text-xs text-slate-500 mb-4">Comparativa volumétrica entre dietas vegetarianas y cárnicas.</p>
+                        <div class="flex justify-between items-center text-xs text-slate-400">
+                            <span>Equipo 3 - 10°B</span>
+                            <span class="font-semibold text-teal-600 hover:underline cursor-pointer">Ver Excel/Datos →</span>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl p-5 hover:border-teal-500 transition-all bg-slate-50/50">
+                        <span class="text-xs font-bold text-purple-600 bg-purple-100 px-2.5 py-0.5 rounded-md">Campaña Digital</span>
+                        <h3 class="font-bold text-slate-800 mt-3 mb-1">Minutos Bajo la Ducha vs. Agua Oculta</h3>
+                        <p class="text-xs text-slate-500 mb-4">Folleto interactivo e hilos de difusión para redes sociales.</p>
+                        <div class="flex justify-between items-center text-xs text-slate-400">
+                            <span>Equipo 5 - 11°A</span>
+                            <span class="font-semibold text-teal-600 hover:underline cursor-pointer">Abrir Galería →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: FOLLETO COMUNITARIO -->
+        <section id="sec-folleto" class="tab-content hidden space-y-6">
+            <div class="bg-gradient-to-br from-teal-800 to-slate-900 text-white rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+                <div class="max-w-3xl relative z-10">
+                    <span class="text-teal-400 text-xs font-bold uppercase tracking-widest">Guía de Acción Ciudadana</span>
+                    <h2 class="text-3xl font-extrabold mt-1 mb-4">Recomendaciones para un Consumo Hídrico Sostenible</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        Pequeñas acciones cotidianas que reducen de manera drástica la huella hídrica directa e indirecta en nuestros hogares y comunidad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-3xl shadow-lg border border-slate-100 flex items-start space-x-4">
+                    <div class="p-3 bg-emerald-100 text-emerald-600 rounded-2xl shrink-0">
+                        <i data-lucide="utensils" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 mb-1">Alimentación Consciente</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Incorpora un día a la semana libre de carne ("Lunes Sin Carne"). Reducir un 15% el consumo de carne de res ahorra miles de litros de agua virtual agrícola.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-3xl shadow-lg border border-slate-100 flex items-start space-x-4">
+                    <div class="p-3 bg-blue-100 text-blue-600 rounded-2xl shrink-0">
+                        <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 mb-1">Moda Sostenible y Circular</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Opta por ropa de segunda mano o intercambios. Extender la vida útil de un pantalón de jeans evita el gasto de 8.000 litros de agua en su producción.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-3xl shadow-lg border border-slate-100 flex items-start space-x-4">
+                    <div class="p-3 bg-cyan-100 text-cyan-600 rounded-2xl shrink-0">
+                        <i data-lucide="smartphone" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 mb-1">Tecnología Responsable</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Repara tus dispositivos electrónicos antes de cambiarlos. Fabricar un teléfono inteligente consume alrededor de 12.000 litros de agua mineral e industrial.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-3xl shadow-lg border border-slate-100 flex items-start space-x-4">
+                    <div class="p-3 bg-indigo-100 text-indigo-600 rounded-2xl shrink-0">
+                        <i data-lucide="bath" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 mb-1">Eficiencia Directa en Casa</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Reduce el tiempo de ducha a 5 minutos y utiliza aireadores en los grifos. Esto ahorra hasta 60 litros de agua directa al día por persona.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-8 px-4 text-xs mt-12 border-t border-slate-800">
+        <p>Feria de Concientización Hídrica Escolar - Proyecto Pedagógico ABP</p>
+        <p class="mt-1 text-slate-500">Basado en datos de la Water Footprint Network y metodologías de UNICEF PLANEA.</p>
+    </footer>
+
+    <!-- Logic JS -->
+    <script>
+        // Inicialización de Lucide Icons
+        lucide.createIcons();
+
+        // Control de Tabs
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+                btn.classList.add('text-slate-600');
+            });
+
+            document.getElementById('sec-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+            activeBtn.classList.remove('text-slate-600');
+        }
+
+        // Gráfico Chart.js
+        let myChart = null;
+
+        function initChart(ducha, cafe, carne, ropa) {
+            const ctx = document.getElementById('chartHuella').getContext('2d');
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ducha Directa', 'Café (Virtual)', 'Carne (Virtual)', 'Ropa (Virtual)'],
+                    datasets: [{
+                        data: [ducha, cafe, carne, ropa],
+                        backgroundColor: ['#06b6d4', '#3b82f6', '#10b981', '#a855f7'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        // Cálculo de Huella Hídrica
+        function calcularHuella() {
+            const minDucha = parseFloat(document.getElementById('input-ducha').value) || 0;
+            const tazasCafe = parseFloat(document.getElementById('input-cafe').value) || 0;
+            const porcionesCarne = parseFloat(document.getElementById('input-carne').value) || 0;
+            const prendasRopa = parseFloat(document.getElementById('input-ropa').value) || 0;
+
+            // Cálculos Semanales (Litros)
+            const gastoDucha = minDucha * 12 * 7;
+            const gastoCafe = tazasCafe * 140 * 7;
+            const gastoCarne = porcionesCarne * 2400;
+            const gastoRopa = (prendasRopa * 3000) / 4; // Promedio semanal
+
+            const totalSemanal = Math.round(gastoDucha + gastoCafe + gastoCarne + gastoRopa);
+
+            // Actualizar interfaz
+            document.getElementById('resultado-litros').textContent = totalSemanal.toLocaleString('es-ES');
+            
+            const equivalenciaBañeras = Math.round(totalSemanal / 150);
+            document.getElementById('resultado-equivalencia').textContent = 
+                `Tu impacto hídrico semanal equivale aproximadamente a llenar ${equivalenciaBañeras} bañeras de agua completas.`;
+
+            // Actualizar gráfico
+            initChart(gastoDucha, gastoCafe, gastoCarne, gastoRopa);
+        }
+
+        // Ejecución inicial al cargar
+        window.onload = function() {
+            calcularHuella();
+        };
+    </script>
+</body>
+</html>
